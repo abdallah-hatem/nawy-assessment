@@ -13,8 +13,8 @@ RUN npm install
 # Copy the rest of your application's code
 COPY . .
 
-# Make port 8000 available to the world outside this container
-EXPOSE 8000
+# Make port 3000 available to the world outside this container
+EXPOSE 5000
 
 # Command to run the application (this will be overridden by docker-compose command)
-CMD ["npm", "run", "start:dev"]
+CMD ["npm", "run", "dev"]
