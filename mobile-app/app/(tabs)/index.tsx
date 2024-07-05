@@ -15,9 +15,13 @@ import { ActivityIndicator } from "react-native-paper"
 
 export default function HomeScreen() {
   const [data, setData] = useState<Appartment[]>([])
+  const [loading, setLoading] = useState<boolean>(false)
 
   function getData() {
-    GET_APARTMENTS().then((res) => setData(res.result))
+    setLoading(true)
+    GET_APARTMENTS()
+      .then((res) => res.result && setData(res.result))
+      .finally(() => setLoading(false))
   }
 
   useEffect(() => {
@@ -26,24 +30,34 @@ export default function HomeScreen() {
 
   return (
     <ScrollView
+      contentContainerStyle={styles.container}
       refreshControl={
         <RefreshControl refreshing={false} onRefresh={() => getData()} />
       }
       style={{ flex: 1, backgroundColor: "white" }}
     >
+      {loading && <Spinner />}
       <SafeAreaView>
-        {data.length > 0 ? (
-          data.map((el, index) => <ApartmentCard key={index} {...el} />)
-        ) : (
-          <Spinner />
-        )}
+        {!loading &&
+          data.length > 0 &&
+          data.map((el, index) => <ApartmentCard key={index} {...el} />)}
       </SafeAreaView>
     </ScrollView>
   )
 
   function Spinner() {
-    return <ActivityIndicator style={{ flex: 1 }} size="large" />
+    return (
+      <View
+        style={{
+          height: 500,
+        }}
+      >
+        <ActivityIndicator size="large" />
+      </View>
+    )
   }
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container: { display: "flex" },
+})

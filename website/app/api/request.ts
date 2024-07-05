@@ -38,7 +38,7 @@ export type Response<T = any> = {
 
 export type MyResponse<T = any> = Promise<Response<T>>
 
-export const ApiBaseUrl = "http://192.168.1.8:8000"
+export const ApiBaseUrl = "http://localhost:8000"
 
 /**
  *

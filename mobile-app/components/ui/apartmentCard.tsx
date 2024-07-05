@@ -45,7 +45,7 @@ const ApartmentCard: React.FC<CardProps> = ({
         <Text style={styles.title}>{name}</Text>
         <Text style={styles.location}>{location}</Text>
         <Text style={styles.description}>{description}</Text>
-        <Text style={styles.price}>${price}</Text>
+        <Text style={styles.price}>{`$ ${price ?? "N/A"}`}</Text>
       </View>
     </TouchableOpacity>
   )
