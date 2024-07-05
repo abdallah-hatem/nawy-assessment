@@ -38,9 +38,11 @@ export default function HomeScreen() {
     >
       {loading && <Spinner />}
       <SafeAreaView>
-        {!loading &&
-          data.length > 0 &&
-          data.map((el, index) => <ApartmentCard key={index} {...el} />)}
+        {!loading && data.length > 0 ? (
+          data.map((el, index) => <ApartmentCard key={index} {...el} />)
+        ) : (
+          <Text style={{ textAlign: "center" }}>No Data</Text>
+        )}
       </SafeAreaView>
     </ScrollView>
   )
@@ -50,6 +52,7 @@ export default function HomeScreen() {
       <View
         style={{
           height: 500,
+          justifyContent: "center",
         }}
       >
         <ActivityIndicator size="large" />
