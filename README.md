@@ -24,7 +24,7 @@ To run the back-end, database, and website together, use Docker Compose:
 
     docker-compose -f docker-compose.dev.yml up
 
-This will start the back-end, database, and website.
+This will start the back-end, database, and website. ( http://localhost:3000 )
 
 ### Running the Mobile App
 
